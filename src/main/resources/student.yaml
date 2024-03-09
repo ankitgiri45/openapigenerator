@@ -4,10 +4,12 @@ info:
   description: Student API for managing students
   version: 1.0.0
 servers:
-  - url: 'https'
+  - url: 'http://localhost:8080'
+    description: local server
 paths:
   /students:
     get:
+      operationId: getStudents
       summary: Get all students
       description: Get all students
       responses:

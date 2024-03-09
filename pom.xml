@@ -36,25 +36,12 @@
             <artifactId>openapi-generator</artifactId>
             <version>${openapi-generator.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.openapitools/jackson-databind-nullable -->
-        <dependency>
-            <groupId>org.openapitools</groupId>
-            <artifactId>jackson-databind-nullable</artifactId>
-            <version>0.2.6</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
             <version>3.0.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-        </dependency>
-
     </dependencies>
     <build>
         <plugins>
@@ -79,12 +66,38 @@
 
                             <configOptions>
                                 <library>spring-boot</library>
-                                <openApiNullable>true</openApiNullable>
+                                <openApiNullable>false</openApiNullable>
                                 <interfaceOnly>true</interfaceOnly>
                                 <skipDefaultInterface>true</skipDefaultInterface>
                                 <useSpringBoot3>true</useSpringBoot3>
-<!--                                <sourceFolder>src/main/java</sourceFolder>-->
+                                <requestMappingMode>api_interface</requestMappingMode>
                                 <delegatePattern>false</delegatePattern>
+                                <useSwaggerUI>true</useSwaggerUI>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>employee</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>
+                                ${project.basedir}/src/main/resources/employee.yaml
+                            </inputSpec>
+                            <output>${project.basedir}/generated-source</output>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>${project.groupId}.api</apiPackage>
+                            <modelPackage>${project.groupId}.model</modelPackage>
+                            <configOptions>
+                                <library>spring-boot</library>
+                                <openApiNullable>false</openApiNullable>
+                                <interfaceOnly>true</interfaceOnly>
+                                <skipDefaultInterface>true</skipDefaultInterface>
+                                <useSpringBoot3>true</useSpringBoot3>
+                                <requestMappingMode>none</requestMappingMode>
+                                <delegatePattern>false</delegatePattern>
+                                <useSwaggerUI>true</useSwaggerUI>
                             </configOptions>
                         </configuration>
                     </execution>
